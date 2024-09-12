@@ -1,8 +1,16 @@
-import React from "react";
+import React, { ComponentProps } from "react";
 import "./button.css";
 import { motion } from "framer-motion";
 
-export interface ButtonProps {
+export interface ButtonProps extends ComponentProps<"button"> {
+  /**
+   * Additional classes to apply to the button
+   */
+  className?: string;
+  /**
+   * The layoutId to use for the button
+   */
+  layoutId?: string;
   /**
    * Is this the principal call to action on the page?
    */
@@ -22,17 +30,19 @@ export interface ButtonProps {
   /**
    * Optional click handler
    */
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 /**
  * Primary UI component for user interaction
  */
 export const Button = ({
+  backgroundColor,
   children,
+  className,
+  layoutId,
   primary = false,
   size = "medium",
-  backgroundColor,
   ...props
 }: ButtonProps) => {
   const mode = primary
@@ -40,14 +50,10 @@ export const Button = ({
     : "storybook-button--secondary";
   return (
     <motion.button
-      layoutId="expandable"
-      type="button"
-      className={["storybook-button", `storybook-button--${size}`, mode].join(
-        " "
-      )}
+      className={className}
+      layoutId={layoutId}
       style={{ backgroundColor }}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
+      type="button"
       {...props}
     >
       {children}
