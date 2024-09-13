@@ -1,5 +1,7 @@
 import type { Preview } from "@storybook/react";
 import "../src/app/globals.css";
+import { withDarkBackground } from "./decorators";
+
 
 const preview: Preview = {
   parameters: {
@@ -10,10 +12,12 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    layout: "fullscreen",
     nextjs: {
       appDirectory: true,
     },
   },
+  decorators: [withDarkBackground],
 };
 
 export default preview;
