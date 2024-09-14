@@ -25,3 +25,11 @@ export const withDarkBackground: Decorator = (Story, context) => {
     </div>
   );
 };
+
+export const withPadding: Decorator = (Story, context) => {
+  return (
+    <div style={{ padding: "2rem" }}>
+      <Story />
+    </div>
+  );
+};

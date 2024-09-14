@@ -3,7 +3,7 @@ import {NewsletterSignupButton } from "./NewsletterSignupButton";
 
 
 const meta = {
-    title: "Components/NewsletterSignupButton",
+    title: "App Components/NewsletterSignupButton",
     component: NewsletterSignupButton, 
 } satisfies Meta<typeof NewsletterSignupButton>;
 

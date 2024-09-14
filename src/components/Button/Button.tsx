@@ -1,16 +1,11 @@
 import React, { ComponentProps } from "react";
 import "./button.css";
-import { motion } from "framer-motion";
 
-export interface ButtonProps extends ComponentProps<"button"> {
+export interface ButtonProps<T extends React.ElementType = "button"> {
   /**
    * Additional classes to apply to the button
    */
   className?: string;
-  /**
-   * The layoutId to use for the button
-   */
-  layoutId?: string;
   /**
    * Is this the principal call to action on the page?
    */
@@ -28,15 +23,24 @@ export interface ButtonProps extends ComponentProps<"button"> {
    */
   children: React.ReactNode;
   /**
+   * The layoutId to use for the button
+   */
+  layoutId?: string;
+  /**
    * Optional click handler
    */
-  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (e: React.MouseEvent<T>) => void;
+  /**
+   * The component to render as the button
+   */
+  as?: T;
 }
 
 /**
  * Primary UI component for user interaction
  */
-export const Button = ({
+export const Button = <T extends React.ElementType = "button">({
+  as,
   backgroundColor,
   children,
   className,
@@ -44,19 +48,19 @@ export const Button = ({
   primary = false,
   size = "medium",
   ...props
-}: ButtonProps) => {
+}: ButtonProps<T>) => {
+  const Component = as || "button";
   const mode = primary
     ? "storybook-button--primary"
     : "storybook-button--secondary";
   return (
-    <motion.button
-      className={className}
-      layoutId={layoutId}
+    <Component
+      className={`storybook-button ${mode} storybook-button--${size} ${className}`}
+      {...(Component === "button" && { layoutId })}
       style={{ backgroundColor }}
-      type="button"
       {...props}
     >
       {children}
-    </motion.button>
+    </Component>
   );
 };

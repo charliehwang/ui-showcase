@@ -8,9 +8,11 @@
     "start": "next start",
     "lint": "next lint",
     "storybook": "storybook dev -p 6006 --no-open",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test": "vitest"
   },
   "dependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
     "framer-motion": "^11.3.31",
     "next": "14.2.6",
     "react": "^18",
@@ -28,6 +30,9 @@
     "@storybook/nextjs": "^8.2.9",
     "@storybook/react": "^8.2.9",
     "@storybook/test": "^8.2.9",
+    "@testing-library/jest-dom": "^6.5.0",
+    "@testing-library/react": "^16.0.1",
+    "@types/jest-axe": "^3.5.9",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -35,10 +40,13 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.6",
     "eslint-plugin-storybook": "^0.8.0",
+    "jest-axe": "^9.0.0",
+    "jsdom": "^25.0.0",
     "postcss": "^8.4.44",
     "storybook": "^8.2.9",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^2.1.1"
   },
   "volta": {
     "node": "20.17.0"

@@ -1,6 +1,6 @@
 import type { Preview } from "@storybook/react";
 import "../src/app/globals.css";
-import { withDarkBackground } from "./decorators";
+import { withDarkBackground, withPadding } from "./decorators";
 
 
 const preview: Preview = {
@@ -17,7 +17,7 @@ const preview: Preview = {
       appDirectory: true,
     },
   },
-  decorators: [withDarkBackground],
+  decorators: [withPadding],
 };
 
 export default preview;
