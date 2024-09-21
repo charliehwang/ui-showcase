@@ -1,6 +1,10 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryFn, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import { ExpandableButtonCard, ExpandableButtonCardProps } from "./ExpandableButtonCard";
+import {
+  ExpandableButtonCard,
+  ExpandableButtonCardProps,
+} from "./ExpandableButtonCard";
+import { useExpandableButtonCardStore } from "./useExpandableButtonCardStore";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -18,35 +22,28 @@ const meta = {
   },
   // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
   args: { onClick: fn() },
-}; 
+};
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const Primary: Story = {
-  args: {
-    primary: true,
-    children: "Button",
-  },
-};
+export const SimpleExample = () => {
+  const { isExpanded, setIsExpanded } = useExpandableButtonCardStore();
 
-export const Secondary: Story = {
-  args: {
-    children: "Button",
-  },
-};
-
-export const Large: Story = {
-  args: {
-    size: "large",
-    children: "Button",
-  },
-};
-
-export const Small: Story = {
-  args: {
-    size: "small",
-    children: "Button",
-  },
+  return (
+    <ExpandableButtonCard
+      cta={
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          onClick={() => setIsExpanded(!isExpanded)}
+        >
+          Click to expand
+        </button>
+      }
+    >
+      <div className="mt-4 p-4 rounded-lg bg-gray-100 border border-gray-200">
+        Expandable content
+      </div>
+    </ExpandableButtonCard>
+  );
 };

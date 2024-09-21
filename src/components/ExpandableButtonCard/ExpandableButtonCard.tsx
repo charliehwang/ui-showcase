@@ -1,8 +1,4 @@
 import React from "react";
-import {
-  ExpandableButtonCardProvider,
-  useExpandableButtonCardContext,
-} from "./Context";
 import { useExpandableButtonCardStore } from "./useExpandableButtonCardStore";
 import { useEscapeKey } from "../hooks/useEscapeKey";
 

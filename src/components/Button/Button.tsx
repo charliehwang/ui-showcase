@@ -55,7 +55,9 @@ export const Button = <T extends React.ElementType = "button">({
     : "storybook-button--secondary";
   return (
     <Component
-      className={`storybook-button ${mode} storybook-button--${size} ${className}`}
+      className={
+        "bg-blue-300 hover:bg-blue-700 focus:ring-blue-800 text-white focus:outline-none focus:ring font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 "
+      }
       {...(Component === "button" && { layoutId })}
       style={{ backgroundColor }}
       {...props}
