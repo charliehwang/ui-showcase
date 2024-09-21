@@ -8,10 +8,19 @@ import { Title } from "@/components/Title/Title";
 import { Paragraph } from "@/components/Paragraph/Paragraph";
 import { Button } from "@/components/Button/Button";
 
-type Props = {};
+type FormData = {
+  email: string;
+};
 
-const NewsletterSignupButton = (props: Props) => {
+type Props = { onSubmit: (evt: React.FormEvent<HTMLFormElement>) => void };
+
+const NewsletterSignupButton = ({ onSubmit }: Props) => {
   const { isExpanded, setIsExpanded } = useExpandableButtonCardStore();
+
+  const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    onSubmit(evt);
+  };
 
   return (
     <ExpandableButtonCard
@@ -28,7 +37,7 @@ const NewsletterSignupButton = (props: Props) => {
             transition: { duration: 0.01, ease: "easeInOut" },
           }}
         >
-          Subscribe
+          Subscribe now!
         </Button>
       }
     >
@@ -47,7 +56,7 @@ const NewsletterSignupButton = (props: Props) => {
           transition: { duration: 0.1, ease: "easeInOut" },
         }}
       >
-        <form action="#">
+        <form action="#" onSubmit={handleSubmit}>
           <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
             <div className="mx-auto max-w-screen-md sm:text-center">
               <Title>Sign up for our newsletter</Title>
@@ -91,13 +100,21 @@ const NewsletterSignupButton = (props: Props) => {
 
             <div className="flex justify-end pt-4">
               <Button
+                className="bg-gray-700 hover:bg-red-900"
+                onClick={() => setIsExpanded(!isExpanded)}
+              >
+                Cancel
+              </Button>
+
+              <Button
                 as={motion.button}
+                type="submit"
                 className={
                   "bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full"
                 }
                 onClick={() => setIsExpanded(!isExpanded)}
               >
-                Enter email
+                Subscribe
               </Button>
             </div>
           </div>
