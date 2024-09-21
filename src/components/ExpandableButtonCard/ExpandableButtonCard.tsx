@@ -1,6 +1,7 @@
 import React from "react";
 import { useExpandableButtonCardStore } from "./useExpandableButtonCardStore";
 import { useEscapeKey } from "../hooks/useEscapeKey";
+import { AnimatePresence, motion } from "framer-motion";
 
 export interface ExpandableButtonCardProps {
   /**
@@ -54,10 +55,8 @@ const ExpandableButtonCard = ({
 
   return (
     <section className="relative h-full outline-1">
-      <>
-        {cta}
-        {isExpanded && <>{children}</>}
-      </>
+      {/* <AnimatePresence>{isExpanded ? children : null}</AnimatePresence> */}
+      <AnimatePresence>{isExpanded ? children : cta}</AnimatePresence>
     </section>
   );
 };

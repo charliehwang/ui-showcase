@@ -1,4 +1,3 @@
-import { Button } from "@/components/Button/Button";
 import { Card } from "@/components/Card/Card";
 import { ExpandableButtonCard } from "@/components/ExpandableButtonCard/ExpandableButtonCard";
 import { useExpandableButtonCardStore } from "@/components/ExpandableButtonCard/useExpandableButtonCardStore";
@@ -7,6 +6,7 @@ import React from "react";
 import { Input } from "@/components/Input/Input";
 import { Title } from "@/components/Title/Title";
 import { Paragraph } from "@/components/Paragraph/Paragraph";
+import { Button } from "@/components/Button/Button";
 
 type Props = {};
 
@@ -17,16 +17,15 @@ const NewsletterSignupButton = (props: Props) => {
     <ExpandableButtonCard
       cta={
         <Button
-          as={motion.div}
+          as={motion.button}
           className={
             "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
           }
           layoutId="expandable"
-          // onClick={() => setIsExpanded(!isExpanded)}
-          onClick={() => {
-            console.log("clicked");
-            // setIsExpanded(!isExpanded);
-            setIsExpanded(true);
+          onClick={() => setIsExpanded(!isExpanded)}
+          exit={{
+            opacity: 0,
+            transition: { duration: 0.01, ease: "easeInOut" },
           }}
         >
           Subscribe
@@ -40,14 +39,12 @@ const NewsletterSignupButton = (props: Props) => {
           opacity: 0,
         }}
         animate={{
-          // scaleY: 1,
           opacity: 1,
-          transition: { duration: 0.3, ease: "easeInOut" },
+          transition: { duration: 0.4, ease: "easeInOut" },
         }}
         exit={{
-          // scaleY: 0,
           opacity: 0,
-          transition: { duration: 0.3, ease: "easeInOut" },
+          transition: { duration: 0.1, ease: "easeInOut" },
         }}
       >
         <form action="#">
@@ -59,6 +56,7 @@ const NewsletterSignupButton = (props: Props) => {
                 exclusive discounts feel free to sign up with your email.
               </Paragraph>
             </div>
+
             <div className="items-center mx-auto mb-3 space-y-4 max-w-screen-sm sm:flex sm:space-y-0">
               <Input
                 id="email"
@@ -91,13 +89,12 @@ const NewsletterSignupButton = (props: Props) => {
               .
             </div>
 
-            <div className="flex justify-end">
+            <div className="flex justify-end pt-4">
               <Button
+                as={motion.button}
                 className={
                   "bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full"
                 }
-                // layoutId={isExpanded ? "expandable" : ""}
-                layoutId="expandable"
                 onClick={() => setIsExpanded(!isExpanded)}
               >
                 Enter email
