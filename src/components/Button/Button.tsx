@@ -7,17 +7,9 @@ export interface ButtonProps<T extends React.ElementType = "button"> {
    */
   className?: string;
   /**
-   * Is this the principal call to action on the page?
-   */
-  primary?: boolean;
-  /**
    * What background color to use
    */
   backgroundColor?: string;
-  /**
-   * How large should the button be?
-   */
-  size?: "small" | "medium" | "large";
   /**
    * Button contents
    */
@@ -40,17 +32,10 @@ export const Button = <T extends React.ElementType = "button">({
   backgroundColor,
   children,
   className,
-  primary = false,
-  size = "medium",
   ...props
 }: ButtonProps<T>) => {
   // const Component = as || "button";
   const Component = as || "button";
-  const mode = primary
-    ? "storybook-button--primary"
-    : "storybook-button--secondary";
-
-  console.log({ children, layoutId: props.layoutId });
 
   return (
     <Component
